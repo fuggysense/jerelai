@@ -804,7 +804,12 @@
         await fetch('https://services.leadconnectorhq.com/hooks/x56IYkNUSdGoWwX3BKw8/webhook-trigger/d764d7e8-47aa-4a5c-9543-8a4bbdb52be8', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, source: 'freeguide-ai-digital-twin' })
+          body: JSON.stringify({
+            name,
+            email,
+            source: 'freeguide-ai-digital-twin',
+            lead_magnet_url: 'https://dark-garnet-0b5.notion.site/Build-Your-AI-Digital-Twin-in-20-Minutes-339b0c1e61dc8101bf8acd775d4bfbd7'
+          })
         });
         document.getElementById('form-content').style.display = 'none';
         document.getElementById('success-state').classList.add('show');
