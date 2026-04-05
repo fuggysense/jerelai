@@ -1,0 +1,36 @@
+{
+  "name": "Jess",
+  "age": 28,
+  "ethnicity": "mixed white and Puerto Rican",
+  "vibe": "high energy, motivational, girl-next-door athletic",
+  "face_lock": {
+    "eye_color": "hazel-green",
+    "eye_shape": "round, bright, upturned outer corners",
+    "skin_tone_hex": "#D4A574",
+    "skin_finish": "natural glow, no foundation, visible light freckles across nose",
+    "hair_color": "dark honey brown with sun-bleached lighter ends",
+    "hair_texture": "thick wavy 2B, natural volume",
+    "hair_length": "mid-back, usually in high ponytail or messy bun",
+    "jawline": "heart-shaped face, defined cheekbones, softer chin",
+    "nose_shape": "small straight nose, slightly upturned tip",
+    "lip_shape": "full bottom lip, thinner top lip, always in clear gloss or balm",
+    "distinguishing_marks": [
+      "light freckles across nose and upper cheeks",
+      "small scar on right eyebrow from childhood",
+      "visible collarbone definition",
+      "single ear piercing each side"
+    ],
+    "signature_accessory": "black digital fitness watch on left wrist, small gold hoop earrings, thin gold initial 'J' necklace"
+  },
+  "body": {
+    "build": "athletic, toned arms and shoulders visible, strong legs",
+    "height_impression": "average, compact and powerful"
+  },
+  "outfits": {
+    "casual_home": "cropped white tee, high-waist leggings, hair in messy bun, barefoot",
+    "going_out": "fitted black tank top, distressed denim shorts, white sneakers, hair down and wavy",
+    "workout": "bright coral sports bra, black high-waist compression leggings, cross-trainers, high ponytail, fitness watch",
+    "glam": "fitted olive bodycon midi dress, strappy heels, hair in loose waves, smoky eye"
+  },
+  "prompt_seed": "28 year old mixed white and Puerto Rican woman, high energy motivational fitness vibe. Dark honey brown hair with sun-bleached lighter ends, thick wavy 2B texture, mid-back length in high ponytail. Warm olive-tan skin #D4A574, natural glow with no foundation, light freckles visible across nose and upper cheeks. Round bright hazel-green eyes with upturned outer corners. Small straight nose, slightly upturned tip. Full bottom lip with thinner top lip, clear gloss. Small scar through right eyebrow, visible collarbone definition. Black digital fitness watch on left wrist, small gold hoop earrings, thin gold 'J' initial necklace (always). Athletic toned build, defined arms and shoulders. Bright coral sports bra with black compression leggings. Infectious smile, radiates approachable energy."
+}

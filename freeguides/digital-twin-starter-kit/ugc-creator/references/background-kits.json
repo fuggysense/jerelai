@@ -1,0 +1,83 @@
+{
+  "background_realism_kits": {
+    "description": "Pre-built background object sets for common UGC environments. Pick 3-5 items from the relevant kit to populate the scene.",
+    "bedroom": [
+      "unmade bed with rumpled duvet",
+      "phone charger cable on nightstand",
+      "half-empty water glass",
+      "stack of books or magazines",
+      "fairy lights or LED strip on wall",
+      "laundry basket partially visible",
+      "throw pillows on floor",
+      "candle on dresser",
+      "photo frames on wall",
+      "plant on windowsill"
+    ],
+    "bathroom": [
+      "toothbrush in holder",
+      "soap dispenser",
+      "towel hanging unevenly",
+      "skincare bottles on counter",
+      "makeup bag partially open",
+      "hair tie on counter",
+      "foggy mirror edges",
+      "toilet paper roll visible",
+      "wet counter spots",
+      "shower curtain edge"
+    ],
+    "kitchen": [
+      "coffee mug on counter",
+      "fruit bowl",
+      "paper towel roll",
+      "cutting board leaning against backsplash",
+      "dish soap by sink",
+      "fridge magnets visible",
+      "pot on stove",
+      "hand towel on oven handle",
+      "opened mail on counter",
+      "spice rack partially visible"
+    ],
+    "living_room": [
+      "throw blanket on couch",
+      "remote control on coffee table",
+      "coasters",
+      "candle or diffuser",
+      "magazines fanned out",
+      "shoes by door",
+      "keys on side table",
+      "TV remote",
+      "cushions slightly askew",
+      "plant in corner"
+    ],
+    "car": [
+      "steering wheel visible",
+      "phone mount on dashboard",
+      "sunglasses on visor",
+      "coffee cup in holder",
+      "air freshener hanging from mirror",
+      "seatbelt across chest",
+      "parking lot or street through windows",
+      "slightly dirty windshield"
+    ],
+    "gym": [
+      "water bottle on floor",
+      "towel draped over equipment",
+      "earbuds case",
+      "gym bag partially visible",
+      "rubber floor mats",
+      "mirrors in background",
+      "other people blurred in background",
+      "weight rack visible"
+    ],
+    "poolside": [
+      "pool water reflections",
+      "towel on lounge chair",
+      "sunglasses nearby",
+      "sunscreen bottle",
+      "iced drink with condensation",
+      "flip flops on ground",
+      "pool tiles visible",
+      "palm tree or umbrella shadow"
+    ]
+  }
+}

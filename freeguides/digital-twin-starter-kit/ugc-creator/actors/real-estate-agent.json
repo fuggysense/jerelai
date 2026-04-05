@@ -1,0 +1,35 @@
+{
+  "name": "Marcus",
+  "age": 34,
+  "ethnicity": "African American",
+  "vibe": "polished professional, trustworthy energy, warm but authoritative",
+  "face_lock": {
+    "eye_color": "dark brown",
+    "eye_shape": "wide-set, slightly hooded, direct gaze",
+    "skin_tone_hex": "#8D5524",
+    "skin_finish": "clean matte, well-moisturized, even tone",
+    "hair_color": "black, low fade",
+    "hair_texture": "tight coils, tapered sides, neat lineup",
+    "hair_length": "short on top, skin fade sides",
+    "jawline": "strong square jaw, clean-shaven",
+    "nose_shape": "broad bridge, rounded tip",
+    "lip_shape": "full, natural, well-defined",
+    "distinguishing_marks": [
+      "small mole above right eyebrow",
+      "faint laugh lines beginning at corners of mouth",
+      "slight dimple on left cheek when smiling"
+    ],
+    "signature_accessory": "silver TAG Heuer watch on left wrist, thin silver wedding band"
+  },
+  "body": {
+    "build": "athletic, broad shoulders",
+    "height_impression": "tall"
+  },
+  "outfits": {
+    "casual_home": "fitted navy henley, dark jeans, watch always on",
+    "going_out": "charcoal slim-fit blazer over white crew-neck tee, dark chinos, leather loafers",
+    "workout": "black compression tee, grey joggers, wireless earbuds",
+    "glam": "tailored navy suit, crisp white dress shirt open at collar, polished oxford shoes"
+  },
+  "prompt_seed": "34 year old African American man, polished professional energy. Black hair in tight coils with clean low fade and sharp lineup. Rich brown skin #8D5524, clean matte finish, well-moisturized and even tone. Wide-set dark brown eyes, slightly hooded with direct confident gaze. Broad nose with rounded tip. Full natural lips, well-defined. Small mole above right eyebrow, faint laugh lines at mouth corners, slight left dimple when smiling. Silver TAG Heuer watch on left wrist, thin silver wedding band (always). Athletic build, broad shoulders. Charcoal blazer over white crew-neck tee, relaxed but put-together. Warm smile that reads as trustworthy on camera."
+}

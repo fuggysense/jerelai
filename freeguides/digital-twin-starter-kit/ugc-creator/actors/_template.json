@@ -1,0 +1,31 @@
+{
+  "name": "",
+  "age": 0,
+  "ethnicity": "",
+  "vibe": "",
+  "face_lock": {
+    "eye_color": "",
+    "eye_shape": "",
+    "skin_tone_hex": "#",
+    "skin_finish": "",
+    "hair_color": "",
+    "hair_texture": "",
+    "hair_length": "",
+    "jawline": "",
+    "nose_shape": "",
+    "lip_shape": "",
+    "distinguishing_marks": [],
+    "signature_accessory": ""
+  },
+  "body": {
+    "build": "",
+    "height_impression": ""
+  },
+  "outfits": {
+    "casual_home": "",
+    "going_out": "",
+    "workout": "",
+    "glam": ""
+  },
+  "prompt_seed": ""
+}

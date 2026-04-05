@@ -1,0 +1,64 @@
+{
+  "realism_anchors": [
+    {
+      "id": 1,
+      "name": "skin_pores",
+      "description": "Visible pores on forehead, nose, and cheeks. Never smooth or airbrushed.",
+      "prompt_injection": "visible skin pores on forehead and nose, natural skin texture with slight shine on T-zone"
+    },
+    {
+      "id": 2,
+      "name": "stray_hairs",
+      "description": "Baby hairs at temples, flyaways catching backlight, imperfect part line.",
+      "prompt_injection": "baby hairs at temples catching light, slight flyaways, imperfect hair part"
+    },
+    {
+      "id": 3,
+      "name": "under_eye_texture",
+      "description": "Slight shadows, fine lines, natural discoloration under eyes.",
+      "prompt_injection": "natural under-eye shadows, slight fine lines, subtle blue-purple undertone beneath eyes"
+    },
+    {
+      "id": 4,
+      "name": "uneven_skin_tone",
+      "description": "Redness on nose/cheeks, sun damage variation, visible veins on temples.",
+      "prompt_injection": "slight redness on nose and cheeks, natural skin tone variation, faint veins visible at temples"
+    },
+    {
+      "id": 5,
+      "name": "fabric_texture",
+      "description": "Visible weave, wrinkles where body bends, pilling on worn fabrics.",
+      "prompt_injection": "visible fabric weave texture, natural wrinkles at elbow and waist bends, realistic cloth drape"
+    },
+    {
+      "id": 6,
+      "name": "environmental_noise",
+      "description": "3+ real objects in background: charger cable, water bottle, earbuds, hair tie, etc.",
+      "prompt_injection": "cluttered real background with everyday objects: charging cable, water bottle, hair tie on counter"
+    },
+    {
+      "id": 7,
+      "name": "lighting_imperfection",
+      "description": "Mixed color temperatures, window overexposure, wall color cast.",
+      "prompt_injection": "mixed warm and cool lighting, slight window overexposure, subtle color cast from walls"
+    },
+    {
+      "id": 8,
+      "name": "camera_artifacts",
+      "description": "Shadow noise, edge softness, chromatic aberration, slight motion blur.",
+      "prompt_injection": "slight noise in shadow areas, soft edges in background, subtle chromatic aberration"
+    },
+    {
+      "id": 9,
+      "name": "nail_detail",
+      "description": "Cuticles visible, chipped polish, natural ridges on nails.",
+      "prompt_injection": "visible cuticles, natural nail ridges, slightly chipped nail polish"
+    },
+    {
+      "id": 10,
+      "name": "jewelry_physics",
+      "description": "Chains drape with gravity, earrings catch light unevenly, rings sit naturally.",
+      "prompt_injection": "jewelry draping naturally with gravity, earrings catching light unevenly, chain resting on collarbone"
+    }
+  ]
+}

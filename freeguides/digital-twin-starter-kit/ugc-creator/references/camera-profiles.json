@@ -1,0 +1,67 @@
+{
+  "camera_profiles": {
+    "selfie_front_cam": {
+      "name": "iPhone Selfie (Front Camera)",
+      "description": "Classic UGC selfie angle — arm's length, slightly above eye level",
+      "prompt_elements": [
+        "iPhone front camera selfie",
+        "slight wide-angle lens distortion",
+        "arm-length distance from face",
+        "soft front-facing light from screen",
+        "shallow depth of field on background",
+        "natural skin rendering, no beauty filter",
+        "slight lens flare from overhead light"
+      ],
+      "best_for": ["product_review", "storytime", "grwm"],
+      "aspect_ratio": "9:16",
+      "framing": "head and shoulders, product at chest height"
+    },
+    "rear_cam": {
+      "name": "iPhone Rear Camera (Someone Filming)",
+      "description": "Higher quality, someone else is filming the creator",
+      "prompt_elements": [
+        "iPhone rear camera quality",
+        "sharper image, more depth of field",
+        "medium shot framing",
+        "natural bokeh on background",
+        "slightly more professional but still casual",
+        "person aware of camera but not holding it"
+      ],
+      "best_for": ["lifestyle", "routine", "haul", "before_after"],
+      "aspect_ratio": "9:16",
+      "framing": "waist up or full body depending on context"
+    },
+    "mirror_selfie": {
+      "name": "Mirror Selfie",
+      "description": "Reflected image in bathroom or bedroom mirror",
+      "prompt_elements": [
+        "mirror selfie reflection",
+        "phone visible in hand",
+        "mirror edge visible in frame",
+        "flash reflection or ambient bathroom lighting",
+        "slightly lower quality due to reflection",
+        "bathroom or bedroom mirror",
+        "toothbrush holder, soap dispenser visible in periphery"
+      ],
+      "best_for": ["grwm", "routine", "before_after", "lifestyle"],
+      "aspect_ratio": "9:16",
+      "framing": "full or three-quarter body in mirror"
+    },
+    "overhead_flatlay": {
+      "name": "Overhead Flatlay",
+      "description": "Bird's eye view of products laid out, hands entering frame",
+      "prompt_elements": [
+        "overhead bird's eye view",
+        "products arranged on surface",
+        "hands entering frame from bottom",
+        "soft even lighting from above",
+        "visible surface texture (marble, wood, fabric)",
+        "slight shadow from hands",
+        "casual arrangement, not perfectly styled"
+      ],
+      "best_for": ["haul", "routine"],
+      "aspect_ratio": "1:1 or 4:5",
+      "framing": "top-down, surface fills frame"
+    }
+  }
+}

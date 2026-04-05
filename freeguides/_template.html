@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} | Jerel's AI No-Code Vault</title>
+  <meta name="description" content="{{SUBTITLE}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-alt: #111118;
+      --bg-card: #13131b;
+      --text: #eaeaea;
+      --text-muted: #7a7a8e;
+      --accent: #c4b5fd;
+      --accent-hover: #ddd6fe;
+      --accent-glow: rgba(196, 181, 253, 0.15);
+      --accent-dark: #0a0a0f;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --success: #34d399;
+      --radius: 14px;
+      --shadow: 0 4px 30px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 50px rgba(0,0,0,0.6);
+      --font-display: 'Syne', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --cursor-size: 32px;
+    }
+
+    [data-theme="light"] {
+      --bg: #fafaf9;
+      --bg-alt: #f0f0ec;
+      --bg-card: #ffffff;
+      --text: #0a0a0f;
+      --text-muted: #6b6b7b;
+      --accent: #7c3aed;
+      --accent-hover: #6d28d9;
+      --accent-glow: rgba(124, 58, 237, 0.08);
+      --accent-dark: #ffffff;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-hover: rgba(0, 0, 0, 0.12);
+      --shadow: 0 4px 30px rgba(0,0,0,0.04);
+      --shadow-lg: 0 16px 50px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* CUSTOM CURSOR */
+    .cursor {
+      width: var(--cursor-size);
+      height: var(--cursor-size);
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease-out, opacity 0.2s;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.visible {
+      opacity: 1;
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(1.8);
+      background: var(--accent);
+      opacity: 0.15;
+      border-color: transparent;
+    }
+
+    .cursor-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s;
+      opacity: 0;
+    }
+
+    .cursor-dot.visible {
+      opacity: 1;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+    }
+
+    a, button, input { cursor: none; }
+
+    @media (pointer: coarse) {
+      .cursor, .cursor-dot { display: none !important; }
+      body, a, button, input { cursor: auto; }
+    }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Stagger children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: none; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: none; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: none; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: none; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.25s; opacity: 1; transform: none; }
+
+    /* GRAIN TEXTURE */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 3rem;
+      height: 64px;
+      background: rgba(10, 10, 15, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(250, 250, 249, 0.7);
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-brand:hover { opacity: 0.7; }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: rotate(180deg);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 11rem 3rem 6rem;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(196, 181, 253, 0.2);
+      color: var(--accent);
+      border-radius: 100px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    [data-theme="light"] .badge {
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    h1 .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    h1 .line-inner {
+      display: block;
+      transform: translateY(100%);
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    h1.animate .line-inner {
+      transform: translateY(0);
+    }
+
+    h1 .line:nth-child(2) .line-inner { transition-delay: 0.12s; }
+    h1 .line:nth-child(3) .line-inner { transition-delay: 0.24s; }
+
+    h1 .accent-word {
+      color: var(--accent);
+    }
+
+    h1 .thin {
+      font-weight: 400;
+      opacity: 0.5;
+    }
+
+    .subtitle {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    /* VALUE PILLS */
+    .value-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .pill {
+      padding: 0.5rem 1.1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    /* BENEFITS */
+    .benefits {
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto 4rem;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .benefit:hover {
+      padding-left: 12px;
+      border-bottom-color: var(--accent);
+    }
+
+    .benefit:last-child { border-bottom: none; }
+
+    .benefit-marker {
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 8px;
+      transition: transform 0.3s;
+    }
+
+    .benefit:hover .benefit-marker {
+      transform: scale(1.5);
+    }
+
+    .benefit-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .benefit:hover .benefit-text {
+      color: var(--text);
+    }
+
+    /* FORM SECTION */
+    .form-section {
+      padding: 0 3rem 6rem;
+    }
+
+    .form-card {
+      max-width: 440px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, var(--accent-glow) 0%, transparent 50%);
+      pointer-events: none;
+      animation: glow-drift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(5%, 5%); }
+    }
+
+    .form-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .form-card .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.85rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--accent);
+      color: var(--accent-dark);
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      letter-spacing: 0.02em;
+      cursor: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .submit-btn:active {
+      transform: scale(0.97);
+    }
+
+    .submit-btn .arrow {
+      transition: transform 0.3s;
+    }
+
+    .submit-btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* SUCCESS STATE */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .success-state.show {
+      display: block;
+      animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-check {
+      width: 52px;
+      height: 52px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .success-check::after {
+      content: '';
+      width: 12px;
+      height: 20px;
+      border: solid white;
+      border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
+      margin-top: -4px;
+    }
+
+    .success-state h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .success-state p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 6rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .faq-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.3rem 0;
+    }
+
+    .faq-question {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      transition: color 0.3s;
+    }
+
+    .faq-question:hover { color: var(--accent); }
+
+    .faq-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      padding-top: 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 0 3rem 6rem;
+    }
+
+    .cta-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--accent);
+      border-radius: 20px;
+      padding: 4rem 3rem;
+      text-align: center;
+      color: var(--accent-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-card > * { position: relative; z-index: 1; }
+
+    .cta-card h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-card p {
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .cta-card .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent-dark);
+      color: var(--accent);
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      letter-spacing: 0.02em;
+      cursor: none;
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s;
+    }
+
+    .cta-card .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      nav { padding: 0 1.5rem; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .form-card { padding: 2rem 1.5rem; border-radius: 14px; }
+      .faq-section { padding: 4rem 1.5rem; }
+      .cta-card { padding: 3rem 1.5rem; border-radius: 14px; }
+      .trust-row { flex-direction: column; align-items: center; gap: 0.4rem; }
+      .final-cta { padding: 0 1.5rem 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, .reveal, .stagger > *, h1 .line-inner { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      h1 .line-inner { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">Jerel's AI No-Code Vault</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span class="theme-icon">&#9788;</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="reveal">
+      <span class="badge">&#11088; Free Download</span>
+    </div>
+
+    <h1 id="headline">
+      <span class="line"><span class="line-inner thin">{{HEADLINE_LIGHT}}</span></span>
+      <span class="line"><span class="line-inner accent-word">{{HEADLINE_BOLD}}</span></span>
+    </h1>
+
+    <p class="subtitle reveal reveal-delay-2">{{SUBTITLE}}</p>
+
+    <div class="value-pills reveal reveal-delay-3 stagger">
+      <span class="pill">{{PILL_1}}</span>
+      <span class="pill">{{PILL_2}}</span>
+      <span class="pill">{{PILL_3}}</span>
+    </div>
+
+    <div class="benefits stagger reveal reveal-delay-4">
+      <div class="benefit">
+        <div class="benefit-marker"></div>
+        <span class="benefit-text">{{BENEFIT_1}}</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-marker"></div>
+        <span class="benefit-text">{{BENEFIT_2}}</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-marker"></div>
+        <span class="benefit-text">{{BENEFIT_3}}</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-marker"></div>
+        <span class="benefit-text">{{BENEFIT_4}}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section">
+    <div class="form-card reveal">
+      <div id="form-content">
+        <h2>Get instant access</h2>
+        <p class="form-subtitle">No spam. Unsubscribe anytime.</p>
+        <form id="lead-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="submit-btn">
+            Send me the guide <span class="arrow">&rarr;</span>
+          </button>
+          <div class="trust-row">
+            <span class="trust-item">&#128274; No spam</span>
+            <span class="trust-item">&#9889; Instant</span>
+            <span class="trust-item">&#10005; Unsubscribe</span>
+          </div>
+        </form>
+      </div>
+      <div class="success-state" id="success-state">
+        <div class="success-check"></div>
+        <h3>Check your inbox</h3>
+        <p>Your guide is on its way. Look for it in the next 2 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <h2 class="reveal">Questions</h2>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          {{FAQ_Q1}}
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer"><p>{{FAQ_A1}}</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          {{FAQ_Q2}}
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer"><p>{{FAQ_A2}}</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          {{FAQ_Q3}}
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer"><p>{{FAQ_A3}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="cta-card reveal">
+      <h2>{{CTA_HEADING}}</h2>
+      <p>{{CTA_SUBTEXT}}</p>
+      <a href="#lead-form" class="cta-btn" onclick="document.getElementById('name').focus()">
+        Get free access <span>&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="reveal">
+    &copy; 2026 Jerel's AI No-Code Vault
+  </footer>
+
+  <script>
+    // CUSTOM CURSOR
+    const cursor = document.getElementById('cursor');
+    const dot = document.getElementById('cursor-dot');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+      cursor.classList.add('visible');
+      dot.classList.add('visible');
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursor.classList.remove('visible');
+      dot.classList.remove('visible');
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.12;
+      cursorY += (mouseY - cursorY) * 0.12;
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover detection
+    const hoverTargets = document.querySelectorAll('a, button, input, .pill, .benefit');
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // THEME
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.querySelector('.theme-icon').innerHTML = next === 'dark' ? '&#9788;' : '&#9790;';
+    }
+
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      const theme = document.documentElement.getAttribute('data-theme');
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.theme-icon').innerHTML = theme === 'dark' ? '&#9788;' : '&#9790;';
+      });
+    })();
+
+    // SCROLL REVEAL
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // HEADLINE ANIMATION
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('headline').classList.add('animate');
+      }, 300);
+    });
+
+    // FORM
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!name || !email) return;
+
+      btn.innerHTML = 'Sending... <span class="arrow">&rarr;</span>';
+      btn.disabled = true;
+
+      try {
+        await fetch('{{WEBHOOK_URL}}', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, source: 'freeguide-{{SLUG}}' })
+        });
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('success-state').classList.add('show');
+      } catch (err) {
+        btn.innerHTML = 'Send me the guide <span class="arrow">&rarr;</span>';
+        btn.disabled = false;
+      }
+    }
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const toggle = btn.querySelector('.faq-toggle');
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open');
+      toggle.textContent = isOpen ? '+' : '-';
+    }
+  </script>
+
+</body>
+</html>

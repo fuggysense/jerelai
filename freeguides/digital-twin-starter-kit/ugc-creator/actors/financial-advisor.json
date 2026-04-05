@@ -1,0 +1,35 @@
+{
+  "name": "Priya",
+  "age": 38,
+  "ethnicity": "Indian American",
+  "vibe": "calm authority, approachable expert, warm and precise",
+  "face_lock": {
+    "eye_color": "dark brown with amber flecks in sunlight",
+    "eye_shape": "large almond, naturally lined with dark lashes",
+    "skin_tone_hex": "#C68642",
+    "skin_finish": "dewy, warm undertone, light concealer under eyes",
+    "hair_color": "deep black with subtle dark brown highlights",
+    "hair_texture": "thick straight to slight wave, silky",
+    "hair_length": "past shoulders, usually tucked behind one ear",
+    "jawline": "oval face, soft jawline tapering to a narrow chin",
+    "nose_shape": "straight bridge, slightly pointed tip",
+    "lip_shape": "medium full, natural rose tone, defined cupid's bow",
+    "distinguishing_marks": [
+      "tiny beauty mark on left cheek near nose",
+      "thin gold nose stud on left nostril",
+      "subtle crow's feet when smiling genuinely"
+    ],
+    "signature_accessory": "thin gold nose stud left side, delicate gold chain necklace, small diamond studs in ears"
+  },
+  "body": {
+    "build": "slim, poised posture",
+    "height_impression": "average to slightly tall"
+  },
+  "outfits": {
+    "casual_home": "cream cashmere crewneck, dark straight-leg pants, hair down",
+    "going_out": "structured burgundy blazer, white silk camisole, gold pendant necklace layered",
+    "workout": "black fitted tank, dark leggings, hair in low bun, small gold hoops",
+    "glam": "emerald green satin blouse, tailored black trousers, statement gold cuff bracelet"
+  },
+  "prompt_seed": "38 year old Indian American woman, calm authoritative energy with warm approachability. Deep black hair with subtle brown highlights, thick and silky, past shoulders, tucked behind left ear. Warm golden-brown skin #C68642, dewy finish with warm undertone. Large almond-shaped dark brown eyes with amber flecks, naturally lined with dark lashes. Straight nose with slightly pointed tip, thin gold nose stud on left nostril. Medium full lips with natural rose tone and defined cupid's bow. Tiny beauty mark on left cheek near nose, subtle crow's feet when smiling. Delicate gold chain necklace, small diamond ear studs (always). Slim build, poised upright posture. Structured burgundy blazer over white camisole. Reads as trustworthy and knowledgeable on camera."
+}

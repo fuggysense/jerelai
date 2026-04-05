@@ -1,0 +1,67 @@
+{
+  "anti_patterns": {
+    "description": "12 patterns that instantly expose AI-generated content. ALWAYS include relevant ones in the negative prompt.",
+    "patterns": [
+      {
+        "id": 1,
+        "name": "porcelain_skin",
+        "negative_prompt": "no airbrushed skin, no porcelain smooth texture, no plastic-looking skin"
+      },
+      {
+        "id": 2,
+        "name": "symmetrical_face",
+        "negative_prompt": "no perfectly symmetrical face, no uncanny valley symmetry"
+      },
+      {
+        "id": 3,
+        "name": "dead_eyes",
+        "negative_prompt": "no lifeless eyes, no vacant stare, no doll-like eyes, no perfectly round iris"
+      },
+      {
+        "id": 4,
+        "name": "perfect_hair",
+        "negative_prompt": "no helmet hair, no perfectly placed strands, no unnaturally shiny hair"
+      },
+      {
+        "id": 5,
+        "name": "floating_objects",
+        "negative_prompt": "no floating products, no objects defying gravity, no impossible hand positions"
+      },
+      {
+        "id": 6,
+        "name": "sterile_background",
+        "negative_prompt": "no empty blank backgrounds, no studio-perfect lighting, no stock photo backdrop"
+      },
+      {
+        "id": 7,
+        "name": "wrong_hand_anatomy",
+        "negative_prompt": "no extra fingers, no fused fingers, no distorted hands, no impossible grip"
+      },
+      {
+        "id": 8,
+        "name": "uniform_lighting",
+        "negative_prompt": "no perfectly even lighting, no shadowless scene, no HDR-flat look"
+      },
+      {
+        "id": 9,
+        "name": "generic_expression",
+        "negative_prompt": "no default smile, no neutral stock expression, no frozen mid-expression"
+      },
+      {
+        "id": 10,
+        "name": "text_artifacts",
+        "negative_prompt": "no garbled text on products, no unreadable labels, no AI-generated text"
+      },
+      {
+        "id": 11,
+        "name": "oversaturated_colors",
+        "negative_prompt": "no oversaturated colors, no neon skin tones, no unrealistic color grading"
+      },
+      {
+        "id": 12,
+        "name": "jewelry_physics_break",
+        "negative_prompt": "no floating jewelry, no earrings defying gravity, no chains going through skin"
+      }
+    ]
+  }
+}
